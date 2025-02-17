@@ -3,14 +3,14 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci-demo/node:latest
+      - image: circleci/node:latest
     steps:
       - checkout
       - run: echo "Building application..."
 
   test:
     docker:
-      - image: circleci-demo/node:latest
+      - image: circleci/node:latest
     steps:
       - checkout
       - run: echo "Running unit tests..."
@@ -24,15 +24,15 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $DOCKERHUB_USERNAME/circleci-demo .
+            docker build -t kashx1337/circleci-demo .
       - run:
           name: Authenticate with Docker Hub
           command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            echo "@Dockerx1337" | docker login -u "kashx1337" --password-stdin
       - run:
           name: Push Docker Image
           command: |
-            docker push $DOCKERHUB_USERNAME/circleci-demo
+            docker push kashx1337/circleci-demo
 
 workflows:
   version: 2
