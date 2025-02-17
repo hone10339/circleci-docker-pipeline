@@ -7,6 +7,8 @@ jobs:
     steps:
       - checkout
       - run: echo "Building application..."
+      - run: npm install
+      - run: npm run build
 
   test:
     docker:
@@ -14,6 +16,7 @@ jobs:
     steps:
       - checkout
       - run: echo "Running unit tests..."
+      - run: npm test
 
   build-docker:
     docker:
@@ -24,7 +27,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $DOCKERHUB_USERNAME/circleci-demo .
+            docker build -t "$DOCKERHUB_USERNAME/circleci-demo:latest" .
       - run:
           name: Authenticate with Docker Hub
           command: |
@@ -32,7 +35,7 @@ jobs:
       - run:
           name: Push Docker Image
           command: |
-            docker push $DOCKERHUB_USERNAME/circleci-demo
+            docker push "$DOCKERHUB_USERNAME/circleci-demo:latest"
 
 workflows:
   version: 2
