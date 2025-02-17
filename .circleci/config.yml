@@ -3,14 +3,14 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci-demo/node:latest
     steps:
       - checkout
       - run: echo "Building application..."
 
   test:
     docker:
-      - image: circleci/node:latest
+      - image: circleci-demo/node:latest
     steps:
       - checkout
       - run: echo "Running unit tests..."
